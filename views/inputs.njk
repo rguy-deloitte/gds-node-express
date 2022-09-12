@@ -1,0 +1,45 @@
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+
+{% macro text(id, label, value='', type) %}
+    {{ govukInput({
+        label: {
+            text: label
+        },
+        id: id,
+        name: id,
+        type: type,
+        value: value | escape
+    }) }}
+{% endmacro %}
+
+{% macro radios(id, label, items) %}
+    {{ govukRadios({
+        idPrefix: id,
+        name: id,
+        fieldset: {
+            legend: {
+                text: label,
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--l"
+            }
+        },
+        items: items
+    }) }}
+{% endmacro %}
+
+{% macro textArea(id, label, hint="") %}
+    {{ govukTextarea({
+        name: id,
+        id: id,
+        label: {
+            text: label,
+            classes: "govuk-label--l",
+            isPageHeading: true
+        },
+        hint: {
+            text: hint | escape
+        }
+    }) }}
+{% endmacro %}

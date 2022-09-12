@@ -1,11 +1,14 @@
 const express = require('express');
 const nunjucks = require('nunjucks');
 const path = require('path');
+const fs = require('fs');
+const formData = JSON.parse(fs.readFileSync('config/form.json', 'utf8'));
 
 const app = express();
 
 app.use('/govuk-frontend', express.static(path.join(__dirname, '/node_modules/govuk-frontend/govuk')));
 app.use('/assets', express.static(path.join(__dirname, '/node_modules/govuk-frontend/govuk/assets')));
+app.use('/macros', express.static(path.join(__dirname, '/macros')));
 
 // Setup nunjucks templating engine
 nunjucks.configure(['node_modules/govuk-frontend/', 'views'], {
@@ -19,15 +22,22 @@ app.set('port', process.env.PORT || 3000);
 app.get('/', function(req, res) {
     res.render('index.njk', {
         page: 'home',
-        port: app.get('port')
+        port: app.get('port'),
+        data: {
+            title: 'Homepage',
+        }
     });
 });
 
-// Other example
+// Form page
 app.get('/form', function(req, res) {
     res.render('form.njk', {
         page: 'form',
-        port: app.get('port')
+        port: app.get('port'),
+        data: {
+            title: 'Form',
+            formData,
+        },
     });
 });
 

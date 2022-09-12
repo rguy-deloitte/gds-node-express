@@ -1,0 +1,42 @@
+{
+  "title": "Form Title",
+  "inputs": [
+    {
+      "type": "text",
+      "id": "username",
+      "label": "Username",
+      "value": "NeilMc"
+    },
+    {
+      "type": "password",
+      "id": "password",
+      "label": "Password",
+      "value": ""
+    },
+    {
+      "type": "radios",
+      "id": "shoes",
+      "label": "Do you wear shoes?",
+      "items": [
+        {
+          "value": "always",
+          "text": "Always"
+        },
+        {
+            "value": "sometimes",
+            "text": "Sometimes"
+        },
+        {
+            "value": "Never",
+            "text": "never"
+        }
+      ]
+    },
+    {
+      "type": "textarea",
+      "id": "textarea",
+      "label": "Tell us about your socks",
+      "hint": "Tell us about colour and brand of your socks"
+    }
+  ]
+}
