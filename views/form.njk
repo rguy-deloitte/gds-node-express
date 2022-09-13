@@ -16,7 +16,7 @@
 
             {% for input in data.formData.inputs %}
                 {% if (input.type == 'text') or (input.type == 'password') %}
-                    {{ inputs.text(id = input.id, label = input.label, value = input.value, type = input.type) }}
+                    {{ inputs.text(id = input.id, label = input.label, value = input.value, type = input.type, errorMessage = input.errorMessage) }}
                 {% elif (input.type == 'radios')%}
                     {{ inputs.radios(id = input.id, label = input.label, items = input.items) }}
                 {% elif (input.type == 'textarea')%}

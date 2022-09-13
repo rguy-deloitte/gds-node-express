@@ -2,16 +2,31 @@
 {% from "govuk/components/radios/macro.njk" import govukRadios %}
 {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
 
-{% macro text(id, label, value='', type) %}
+{% macro text(id, label, value='', type, errorMessage) %}
+    {% if errorMessage%}
+        {{ govukInput({
+            label: {
+                text: label
+            },
+            id: id,
+            name: id,
+            type: type,
+            value: value | escape,
+            errorMessage: {
+                text: errorMessage
+            }
+        }) }}
+    {% else %}
     {{ govukInput({
-        label: {
-            text: label
-        },
-        id: id,
-        name: id,
-        type: type,
-        value: value | escape
-    }) }}
+            label: {
+                text: label
+            },
+            id: id,
+            name: id,
+            type: type,
+            value: value | escape
+        }) }}
+    {% endif %}
 {% endmacro %}
 
 {% macro radios(id, label, items) %}
