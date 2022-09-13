@@ -4,4 +4,4 @@ INSTALL:
 npm install
 
 RUN:
-npm runstart
+npm run start

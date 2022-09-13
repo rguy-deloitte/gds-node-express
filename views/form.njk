@@ -1,29 +1,35 @@
 {% extends 'layout.njk' %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
 {% import 'inputs.njk' as inputs %}
 
 {% block content %}
-    {% from "govuk/components/input/macro.njk" import govukInput %}
-    {% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+    <form action="" method="post">
+        {% call govukFieldset({
+            legend: {
+                text: data.title,
+                classes: "govuk-fieldset__legend--l",
+                isPageHeading: true
+            }
+        }) %}
 
-    {% call govukFieldset({
-        legend: {
-            text: data.title,
-            classes: "govuk-fieldset__legend--l",
-            isPageHeading: true
-        }
-    }) %}
+            {% for input in data.formData.inputs %}
+                {% if (input.type == 'text') or (input.type == 'password') %}
+                    {{ inputs.text(id = input.id, label = input.label, value = input.value, type = input.type) }}
+                {% elif (input.type == 'radios')%}
+                    {{ inputs.radios(id = input.id, label = input.label, items = input.items) }}
+                {% elif (input.type == 'textarea')%}
+                    {{ inputs.textArea(id = input.id, label = input.label, hint = input.hint) }}
+                {% else %}
+                    <p>Input type unknown</p>
+                {% endif %}
+            {% endfor %}
 
-        {% for input in data.formData.inputs %}
-            {% if (input.type == 'text') or (input.type == 'password') %}
-                {{ inputs.text(id = input.id, label = input.label, value = input.value, type = input.type) }}
-            {% elif (input.type == 'radios')%}
-                {{ inputs.radios(id = input.id, label = input.label, items = input.items) }}
-            {% elif (input.type == 'textarea')%}
-                {{ inputs.textArea(id = input.id, label = input.label, hint = input.hint) }}
-            {% else %}
-                <p>Input type unknown</p>
-            {% endif %}
-        {% endfor %}
+            {{ govukButton({
+                text: "Save and continue"
+            }) }}
 
-    {% endcall %}
+        {% endcall %}
+    </form>
 {% endblock %}
