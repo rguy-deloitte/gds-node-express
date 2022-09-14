@@ -6,6 +6,7 @@ import path from 'path';
 const app: Application = express();
 
 // set static folders
+app.use(express.static('public'));
 app.use('/govuk-frontend', express.static(path.join(__dirname, '../node_modules/govuk-frontend/govuk')));
 app.use('/assets', express.static(path.join(__dirname, '../node_modules/govuk-frontend/govuk/assets')));
 

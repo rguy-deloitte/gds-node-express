@@ -5,7 +5,7 @@
 {% import 'inputs.njk' as inputs %}
 
 {% block content %}
-    <form action="" method="post">
+    <form action="" data-form method="post">
         {% call govukFieldset({
             legend: {
                 text: data.title,
@@ -32,4 +32,5 @@
 
         {% endcall %}
     </form>
+    <script src="/form.js"></script>
 {% endblock %}

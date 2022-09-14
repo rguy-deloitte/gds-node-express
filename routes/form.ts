@@ -21,17 +21,17 @@ formRoute.get('/form', (req: Request, res: Response) => {
 });
 
 // for parsing post data
-formRoute.use(bodyParser.urlencoded({ extended: true })); 
+formRoute.use(bodyParser.urlencoded({ extended: true }));
+formRoute.use(bodyParser.json());
 
-// form page post
+// server-side post
 formRoute.post('/form',
     body('password').isLength({ min: 5 }).withMessage('Password must be at least 5 characters long'), // apply validation to password
     (req: Request, res: Response) => {
-    // check for validation errors
+    // check for validation errors    
     const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        //return res.status(400).json({ errors: errors.array() });
 
+    if (!errors.isEmpty()) {
         errors.array().forEach(error => {
             formData.inputs.find((input: any) => input.id == error.param).errorMessage = error.msg;
         });
@@ -45,6 +45,21 @@ formRoute.post('/form',
     }
 
     // we have the form data - log to console and send user to complete page
-    console.log(req.body);
-    res.render('complete.njk');
+    res.redirect('/complete');
+});
+
+// client-side post
+formRoute.post('/form-cs',
+    body('password').isLength({ min: 5 }).withMessage('Password must be at least 5 characters long'), // apply validation to password
+    (req: Request, res: Response) => {
+    // check for validation errors    
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        //return res.status(400).json({ errors: errors.array() });
+        return res.json({ errors: errors.array() });
+    }
+
+    // we have the form data - log to console and send user to complete page
+    res.redirect('/complete');
 });
