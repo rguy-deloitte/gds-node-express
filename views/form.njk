@@ -27,7 +27,17 @@
             {% endfor %}
 
             {{ govukButton({
-                text: "Save and continue"
+                text: "Server-side validate and continue",
+                attributes: {
+                    'data-validate': 'server'
+                }
+            }) }}
+
+            {{ govukButton({
+                text: "Client-side validate and continue",
+                attributes: {
+                    'data-validate': 'client'
+                }
             }) }}
 
         {% endcall %}
