@@ -14,7 +14,7 @@ export const formRoute = Router();
 formRoute.get('/form', (req: Request, res: Response) => {
     res.render('form.njk', {
         data: {
-            title: 'Form',
+            title: 'User details',
             formData,
         },
     });

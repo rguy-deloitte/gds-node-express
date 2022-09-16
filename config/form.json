@@ -15,28 +15,28 @@
     },
     {
       "type": "radios",
-      "id": "shoes",
-      "label": "Do you wear shoes?",
+      "id": "usertype",
+      "label": "User type",
       "items": [
         {
-          "value": "always",
-          "text": "Always"
+          "value": "admin",
+          "text": "Administrator"
         },
         {
-            "value": "sometimes",
-            "text": "Sometimes"
+          "value": "rw",
+          "text": "Read/write"
         },
         {
-            "value": "never",
-            "text": "Never"
+          "value": "r",
+          "text": "Read only"
         }
       ]
     },
     {
       "type": "textarea",
-      "id": "textarea",
-      "label": "Tell us about your socks",
-      "hint": "Tell us about colour and brand of your socks"
+      "id": "comments",
+      "label": "Comments",
+      "hint": "Add any additional information"
     }
   ]
 }
