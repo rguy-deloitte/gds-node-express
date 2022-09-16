@@ -23,9 +23,7 @@
     "govuk-frontend": "^4.3.1",
     "multer": "^1.4.5-lts.1",
     "nunjucks": "^3.2.3",
-    "sass": "^1.54.9"
-  },
-  "devDependencies": {
+    "sass": "^1.54.9",
     "@types/express": "^4.17.13",
     "@types/node": "^18.7.17",
     "@types/node-sass": "^4.11.3",
